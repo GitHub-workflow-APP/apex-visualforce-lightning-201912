@@ -1,6 +1,6 @@
 # Introduction
 
-This is a repo of static research for Visualforce, Lightning, Lightning Web Components, and Apex through Salesforce Winter '20.
+This is a repo of static research for Visualforcef, Lightning, Lightning Web Components, and Apex through Salesforce Winter '20.
 
 Testcases are in [testcases/](testcases/).
 

@@ -1,0 +1,44 @@
+<apex:page controller="BasicController" extensions="FooExtension, BarExtension   ">
+    <h2>MultiClass</h2>
+
+    <div>safe output 2: <apex:outputText value="{! bad1}"></apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="{! bad1}" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="blah blah blah {! bad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="{! good1 & bad1}" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output3: <apex:outputText value="blah blah blah {! good1 & 'heyhey' & bad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output4: <apex:outputText value="blah blah blah {! good1 + 'heyhey' + bad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+
+    <div>foo:</div>
+    <div>safe output 2: <apex:outputText value="{! foobad1}"></apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="{! foobad1}" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="blah blah blah {! foobad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="{! foogood1 & foobad1}" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output3: <apex:outputText value="blah blah blah {! foogood1 & 'heyhey' & foobad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output4: <apex:outputText value="blah blah blah {! foogood1 + 'heyhey' + foobad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+
+    <div>bar:</div>
+    <div>safe output 2: <apex:outputText value="{! barbad1}"></apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="{! barbad1}" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="blah blah blah {! barbad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output: <apex:outputText value="{! bargood1 & barbad1}" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output3: <apex:outputText value="blah blah blah {! bargood1 & 'heyhey' & barbad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+    <div>unsafe output4: <apex:outputText value="blah blah blah {! bargood1 + 'heyhey' + barbad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+    </apex:outputText></div>
+
+
+
+</apex:page>

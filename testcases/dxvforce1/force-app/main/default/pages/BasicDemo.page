@@ -1,0 +1,140 @@
+<apex:page controller="BasicController" lightningStylesheets="true">
+<h1>BasicDemo</h1>
+
+<apex:pageMessages escape="true"/>
+
+<div>Current user: {!$User.FirstName}</div>
+<div>good1: {! good1 }</div>
+<div>
+let's try some math: {! FLOOR((2 + 5) * 3 ^ 7) }
+</div>
+
+<div> blankvalue: {! blankvalue("hi", "xyzzy")} </div>
+<div>unsafe output: <apex:outputText value="{! blankvalue(bad1, "foo")}" escape="false" /></div>         <!-- CWEID 80 -->
+<div>unsafe output: <apex:outputText value="{! blankvalue(good1, bad1)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>unsafe output: <apex:outputText value="{! case (1, 0, "foo", 1, "hey", "hi")}" escape="false" /></div>
+<div>unsafe output: <apex:outputText value="{! case (1, 0, "foo", 1, bad1, "hi")}" escape="false" /></div>      <!-- CWEID 80 -->
+<div>unsafe output: <apex:outputText value="{! case (2, 0, "foo", 1, good1, bad1)}" escape="false" /></div>      <!-- CWEID 80 -->
+<div>unsafe output: <apex:outputText value="{! case (0, 0, bad1, 1, good1, "hi")}" escape="false" /></div>      <!-- CWEID 80 -->
+
+<div>cleanser: <apex:outputText value="{! bad1}" escape="false" /></div>         <!-- CWEID 80 -->
+<div>cleanser: <apex:outputText value="{! htmlencode(bad1)}" escape="false" /></div> 
+<div>cleanser: <apex:outputText value="{! bad1 & htmlencode('xx')}" escape="false" /></div>         <!-- CWEID 80 -->
+<div>cleanser: <apex:outputText value="{! jsencode(bad1)}" escape="false" /></div> 
+<div>cleanser: <apex:outputText value="{! bad1 & jsencode('xx')}" escape="false" /></div>         <!-- CWEID 80 -->
+<div>cleanser: <apex:outputText value="{! jsinhtmlencode(bad1)}" escape="false" /></div> 
+<div>cleanser: <apex:outputText value="{! bad1 & jsinhtmlencode('xx')}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>if: <apex:outputText value="{! if(31337 < 31338, bad1, good1)}" escape="false" /></div>         <!-- CWEID 80 -->
+<div>if: <apex:outputText value="{! if(31337 > 31338, good1, bad1)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>left: <apex:outputText value="{! "left " & left(good1, 100)}" escape="false" /></div>
+<div>left: <apex:outputText value="{! "left " & left(bad1, 100)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>lower: <apex:outputText value="{! "lower " & lower(good1)}" escape="false" /></div>
+<div>lower: <apex:outputText value="{! "lower " & lower(bad1)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>lpad: <apex:outputText value="{! "lpad " & lpad(good1, 100)}" escape="false" /></div>
+<div>lpad: <apex:outputText value="{! "lpad " & lpad(bad1, 100)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>mid: <apex:outputText value="{! "mid " & mid(good1, 0, 100)}" escape="false" /></div>
+<div>mid: <apex:outputText value="{! "mid " & mid(bad1, 0, 100)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>nullvalue: <apex:outputText value="{! nullvalue(bad1, good1)}" escape="false" /></div>         <!-- CWEID 80 -->
+<div>nullvalue: <apex:outputText value="{! nullvalue(good1, bad1)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>RIGHT: <apex:outputText value="{! "RIGHT " & RIGHT(good1, 100)}" escape="false" /></div>
+<div>RIGHT: <apex:outputText value="{! "RIGHT " & RIGHT(bad1, 100)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>rPAd: <apex:outputText value="{! "rPAd " & rPAd(good1, 100)}" escape="false" /></div>
+<div>rPAd: <apex:outputText value="{! "rPAd " & rPAd(bad1, 100)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>substitute: <apex:outputText value="{! "substitute " & substitute(good1, 'x', 'y')}" escape="false" /></div>
+<div>substitute: <apex:outputText value="{! "substitute " & substitute(good1, bad1, 'y')}" escape="false" /></div>
+<div>substitute: <apex:outputText value="{! "substitute " & substitute(good1, 'x', bad1)}" escape="false" /></div>      <!-- CWEID 80 -->
+<div>substitute: <apex:outputText value="{! "substitute " & substitute(bad1, 'x', good1)}" escape="false" /></div>      <!-- CWEID 80 -->
+
+<div>trim: <apex:outputText value="{! "trim " & trim(good1)}" escape="false" /></div>
+<div>trim: <apex:outputText value="{! "trim " & trim(bad1)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div>UppER: <apex:outputText value="{! "UppER " & UppER(good1)}" escape="false" /></div>
+<div>UppER: <apex:outputText value="{! "UppER " & UppER(bad1)}" escape="false" /></div>         <!-- CWEID 80 -->
+
+<div> safe label: <apex:outputLabel for="someid" value="{!good1}" /> </div>
+<div> safe label: <apex:outputLabel for="someid" value="{!good1}" escape="false" /> </div>
+<div> safe label: <apex:outputLabel for="someid" value="{!good1}" escape="true" /> </div>
+
+<div> unsafe label: <apex:outputLabel for="someid" value="{!bad1}" /> </div>
+<div> unsafe label: <apex:outputLabel for="someid" value="{!bad1}" escape="false" /> </div>     <!-- CWEID 80 -->
+<div> unsafe label: <apex:outputLabel for="someid" value="{!bad1}" escape="true" /> </div>
+
+<div>safe output: {!bad1}</div>
+<div>safe even inside an apex:outputText
+    <apex:outputText value="here we are" escape="false">
+        {!bad1}
+    </apex:outputText>
+</div>
+<div>safe output 2: <apex:outputText value="{! bad1}"></apex:outputText></div>
+<div>unsafe output: <apex:outputText value="{! bad1}" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+<div>unsafe output: <apex:outputText value="blah blah blah {! bad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+<div>unsafe output: <apex:outputText value="{! good1 & bad1}" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+<div>unsafe output3: <apex:outputText value="blah blah blah {! good1 & 'heyhey' & bad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+<div>unsafe output4: <apex:outputText value="blah blah blah {! good1 + 'heyhey' + bad1} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+
+<div>safe output: {!good1}</div>
+<div>safe even inside an apex:outputText
+    <apex:outputText value="here we are" escape="false">
+        {!good1}
+    </apex:outputText>
+</div>
+<div>safe output 2: <apex:outputText value="{! good1}"></apex:outputText></div>
+<div>unsafe output: <apex:outputText value="{! good1}" escape="false">
+</apex:outputText></div>
+
+<div>safe request: {!$Request.foo}</div>
+<div> unsafe request: <apex:outputText value="don't do this: {!$Request.foo}" escape="false" />     <!-- CWEID 80 -->   </div>
+<div> unsafe request: <apex:outputText value="don't do this: {!$Request.foo}" />    </div>
+
+<div>safe output: {!$CurrentPage.parameters.foo}</div>
+<div>safe even inside an apex:outputText
+    <apex:outputText value="here we are" escape="false">
+        {!$CurrentPage.parameters.foo}
+    </apex:outputText>
+</div>
+<div>safe output 2: <apex:outputText value="{! $CurrentPage.parameters.foo}"></apex:outputText></div>
+<div>unsafe output: <apex:outputText value="{! $CurrentPage.parameters.foo}" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+<div>unsafe output: <apex:outputText value="blah blah blah {! $CurrentPage.parameters.foo} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+
+<div>unsafe output: <apex:outputText value="blah blah blah {! $CuRRENtPaGE.PARAMETeRS.foo} lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+<div>unsafe output: <apex:outputText value="blah blah blah {!    'hi'+$CuRRENtPaGE.PARAMETeRS.foo  } lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+<div>unsafe output2: <apex:outputText value="blah blah blah {!    'hi' & $CuRRENtPaGE.PARAMETeRS.foo  } lksajdflkajsdlfja" escape="false">         <!-- CWEID 80 -->
+</apex:outputText></div>
+
+    <script>
+        console.log("{! good1}");
+    </script>
+    <script>
+        console.log("{! bad1}");        <!-- CWEID 80 -->
+    </script>
+    <script>
+        console.log("{! $currentPAGE.parameters.foo}");        <!-- CWEID 80 -->
+    </script>
+
+    <div onmouseover="{!good1}">good1 over div</div>
+    <div onmouseover="{!bad1}">bad1 over div</div>          <!-- CWEID 80 -->
+    <div onmouseover="{!good1} {!bad1}">bad1 over div</div>          <!-- CWEID 80 -->
+    <div onmouseover="{!''+bad1}">bad1 over div</div>           <!-- CWEID 80 -->
+    <div onmouseover="{!''+$currentpage.parameters.foo}">bad1 over div</div>           <!-- CWEID 80 -->
+
+
+</apex:page>

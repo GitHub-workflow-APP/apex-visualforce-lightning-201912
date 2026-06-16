@@ -1,0 +1,109 @@
+<apex:page controller="NewApex">
+<apex:pageMessages escape="false"/>
+<h1>NewApexVF</h1>
+<apex:form>
+    <apex:pageMessage severity="info" detail="<b>detail</b>"  escape="false" summary="<b>summary</b>"  title="<b>title</b>" />
+    <apex:pageMessage severity="info" detail="{!nabad2}" escape="true" summary="summary {!nabad3}"  title="title {!nabad4}" />
+    <apex:pageMessage severity="info" detail="{!nabad2}" escape="false" summary="summary {!nabad3}"  title="title {!nabad4}" />
+    <apex:pageBlock>
+
+        <apex:inputText id="nabad1" value="{!nabad1}"></apex:inputText>
+        <apex:commandButton action="{!handleclick}" value="handleclick"></apex:commandButton>
+
+        <div>
+            <apex:commandButton action="{!dofinish}" value="dofinish"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!dofinish2}" value="dofinish2"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!dofinish3}" value="dofinish3"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!doverify1}" value="doverify1"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!doverify2}" value="doverify2"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!doverify3}" value="doverify3"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!dologin1}" value="dologin1"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!dologin2}" value="dologin2"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!dologin3}" value="dologin3"></apex:commandButton>
+        </div>
+        <div>
+            <apex:commandButton action="{!dologin4}" value="dologin4"></apex:commandButton>
+        </div>
+
+        <div> <apex:commandButton action="{!sendasync1}" value="sendasync1"></apex:commandButton> </div>
+        <div> <apex:commandButton action="{!sendasync2}" value="sendasync2"></apex:commandButton> </div>
+        <div> <apex:commandButton action="{!sendasync3}" value="sendasync3"></apex:commandButton> </div>
+
+        <div> <apex:commandButton action="{!verify1}" value="verify1"></apex:commandButton> </div>
+        <div> <apex:commandButton action="{!verify2}" value="verify2"></apex:commandButton> </div>
+        <div> <apex:commandButton action="{!verify3}" value="verify3"></apex:commandButton> </div>
+
+        <div> <apex:commandButton action="{!verify4}" value="verify4"></apex:commandButton> </div>
+        <div> <apex:commandButton action="{!verify5}" value="verify5"></apex:commandButton> </div>
+        <div> <apex:commandButton action="{!verify6}" value="verify6"></apex:commandButton> </div>
+
+        <apex:selectCheckboxes value="{!selectedoptions}">
+            <apex:selectOptions value="{!options}" />
+            <div>
+                goodopt:
+                <apex:selectOption value="{!goodopt}" itemEscaped="false"/>
+            </div>
+            <div>
+                <apex:selectOption itemLabel="<b>label</b>" itemValue="<b>value</b>" itemEscaped="true" />
+                <apex:selectOption itemLabel="<b>label</b>" itemValue="<b>value</b>" itemEscaped="false" />
+                <apex:selectOption itemLabel="<b>label</b>" itemValue="<b>value</b>" />
+            </div>
+            <div>
+                <apex:selectOption itemLabel="{!nabad1}" itemValue="<b>value</b>" itemEscaped="true" />
+                <apex:selectOption itemLabel="{!nabad1}" itemValue="<b>value</b>" itemEscaped="false" />        <!-- CWEID 80 -->
+                <apex:selectOption itemLabel="{!nabad1}" itemValue="<b>value</b>" />
+            </div>
+            <div>
+                <apex:selectOption itemLabel="{!nabad1}" itemvalue="<b>value</b>" itemescaped="true" />
+                <apex:selectOption itemLabel="{!nabad1}" itemvalue="<b>value</b>" itemescaped="false" />        <!-- CWEID 80 -->
+                <apex:selectOption itemLabel="{!nabad1}" itemvalue="<b>value</b>" />
+            </div>
+            <div>
+                <apex:selectOption itemLabel="{!nagood1}" itemValue="<b>value</b>" itemEscaped="true" />
+                <apex:selectOption itemLabel="{!nagood1}" itemValue="<b>value</b>" itemEscaped="false" />
+                <apex:selectOption itemLabel="{!nagood1}" itemValue="<b>value</b>" />
+            </div>
+        </apex:selectCheckboxes>
+        <div> goodcomp1: <apex:dynamicComponent componentValue="{!goodcomp1}" /> </div>
+        <div> goodcomp2: <apex:dynamicComponent componentValue="{!goodcomp2}" /> </div>
+        <div> goodcomp3: <apex:dynamicComponent componentValue="{!goodcomp3}" /> </div>
+
+        <div> badcomp1: <apex:dynamicComponent componentValue="{!badcomp1}" /> </div>
+        <div> badcomp2: <apex:dynamicComponent componentValue="{!badcomp2}" /> </div>
+        <div> badcomp3: <apex:dynamicComponent componentValue="{!badcomp3}" /> </div>
+
+        <div> goodlblcomp1: <apex:dynamicComponent componentValue="{!goodlblcomp1}" /> </div>
+        <div> goodlblcomp2: <apex:dynamicComponent componentValue="{!goodlblcomp2}" /> </div>
+        <div> goodlblcomp3: <apex:dynamicComponent componentValue="{!goodlblcomp3}" /> </div>
+
+        <div> badlblcomp1: <apex:dynamicComponent componentValue="{!badlblcomp1}" /> </div>
+        <div> badlblcomp2: <apex:dynamicComponent componentValue="{!badlblcomp2}" /> </div>
+        <div> badlblcomp3: <apex:dynamicComponent componentValue="{!badlblcomp3}" /> </div>
+
+        <div> goodpmcomp1: <apex:dynamicComponent componentValue="{!goodpmcomp1}" /> </div>
+        <div> goodpmcomp2: <apex:dynamicComponent componentValue="{!goodpmcomp2}" /> </div>
+        <div> goodpmcomp3: <apex:dynamicComponent componentValue="{!goodpmcomp3}" /> </div>
+
+
+        <div> badpmcomp1: <apex:dynamicComponent componentValue="{!badpmcomp1}" /> </div>
+        <div> badpmcomp2: <apex:dynamicComponent componentValue="{!badpmcomp2}" /> </div>
+        <div> badpmcomp3: <apex:dynamicComponent componentValue="{!badpmcomp3}" /> </div>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>
